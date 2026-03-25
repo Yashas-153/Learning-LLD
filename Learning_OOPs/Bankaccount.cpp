@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <queue>
 #include <set>
+#include <string> 
 using namespace std;
 
 class BankAccount {
@@ -17,20 +18,20 @@ public:
     BankAccount(string name): name(name), balance(0){
         account_no = AccountNumber++;
     }
-    double getBalance(){
+    double getBalance() const {
         return balance;
     }
 
-    string getName(){
+    string getName() const {
         return name;
     }
 
-    long long getAccountNo(){
+    long long getAccountNo() const {
         return account_no;
     }
 
     bool withdraw(double amount){
-        if(amount <=0 or amount > balance) return false;
+        if(amount <=0 || amount > balance) return false;
         balance -= amount;
         return true;
     }
@@ -41,3 +42,11 @@ public:
         return true;
     }
 };
+long long BankAccount::AccountNumber = 100000;
+int main(){
+    BankAccount sb_ac = BankAccount("Monalisa");
+    sb_ac.deposit(100);
+    double account_balance = sb_ac.getBalance();
+    cout<<"Account Balance is "<<account_balance<<endl;
+    return 0;
+}
